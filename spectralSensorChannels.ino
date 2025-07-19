@@ -47,6 +47,7 @@ void loop() {
   Serial.print('\t');
   Serial.print(as7341.getChannel(AS7341_CHANNEL_680nm_F8));
 
+  // Comment out if you want to use Serial Plotter
   Serial.print("Clear    : ");
   Serial.println(as7341.getChannel(AS7341_CHANNEL_CLEAR));
 
