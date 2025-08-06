@@ -2,20 +2,32 @@ package org.firstinspires.ftc.individualprojects;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 @TeleOp(name = "Adafruit Sensor Test", group = "Sensor")
-public class AdafruitAS7341Calibration  extends LinearOpMode{
+public class AdafruitAS7341Calibration extends LinearOpMode {
 
-        HardwareSpectralBot spectral = new HardwareSpectralBot();
+    HardwareSpectralBot robot = new HardwareSpectralBot();
 
-        public void init(){
+    @Override
+    public void runOpMode() throws InterruptedException {
+        robot.init(hardwareMap);
 
+        telemetry.addData("State", "Ready");
+        telemetry.update();
+        waitForStart();
+
+        while (opModeIsActive()) {
+            robot.readBulkData();
+            int[] spectralChannelData = robot.readAllChannels();
+            for(int i = 0; i < spectralChannelData.length; i++){
+                telemetry.addData("F" + i, "%2f", spectralChannelData[i]);
+            }
+            telemetry.update();
         }
+    }
+}
 
-        @Override
-        public void runOpMode(){
-
-        }
-        /*private I2cDeviceSynch i2cDevice;
+/*private I2cDeviceSynch i2cDevice;
 
         @Override
         public void init() {
@@ -37,4 +49,3 @@ public class AdafruitAS7341Calibration  extends LinearOpMode{
             telemetry.update();
         }*/
 
-}
