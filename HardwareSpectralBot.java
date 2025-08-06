@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 public class HardwareSpectralBot {
     LynxModule controlHub;
     LynxModule expansionHub;
-    private I2cDeviceSynch spectralAS7341;
+    protected I2cDeviceSynch spectralAS7341;
 
     private final int I2cHardwareAddress = 0x39; // physical hardware address on I2C bus (7-bit)
     private final int spectralRegisterAddressSelector = 0x70; // address of virtual register selector on bus used for commands to select channels
@@ -17,7 +17,7 @@ public class HardwareSpectralBot {
     // Virtual register addresses for channel LSBs (Least Significant Bits (8 right-most))
     // Channel MSBs (Most significant bits (8 left-most)) are the next channel up so 0x95 -> 0x96
     // All 10 channels are in hexadecimal format
-    public final int[] virtualLsbAddresses = {
+    private final int[] virtualLsbAddresses = {
             0x95, // F1 410nm
             0x97, // F2 440nm
             0x99, // F3 475nm
